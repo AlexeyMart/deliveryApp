@@ -1,0 +1,38 @@
+
+* {
+  margin:0;
+  padding:0;
+  outline:0;
+  border:0;
+}
+html, body {
+background:#fff;
+  color:#000;
+  font-size:18px;
+  font-family: Tahoma;
+
+}
+
+div	{
+  position:relative;
+}
+
+.clear {
+  clear:both;
+  height:0;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+
+/* --------------------------------------------- */
+
