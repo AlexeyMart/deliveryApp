@@ -1,15 +1,15 @@
 import React from 'react';
-import { Rate } from 'antd';
+import { Rate, Card } from 'antd';
 
 export default function Review({ review: { user, text, rating } }) {
     console.log(user, text, rating);
 
     return (
-        <div style={{ margin: '10px 0' }}>
-            <p>User: {user}</p>
-            <p>Text: {text}</p>
-            <span>Rating: </span>
-            <Rate defaultValue={rating} disabled></Rate>
+        <div className="review-container">
+            <Card bordered title={user} size="small">
+                <p>{text}</p>
+                <Rate value={rating} disabled></Rate>
+            </Card>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import ReviewList from './ReviewList';
+import RestaurantMenu from './RestaurantMenu';
 
 export default function Restaurant({ restaurant, defaultOpen }) {
     const [isOpen, setOpen] = useState(defaultOpen);
@@ -9,14 +10,15 @@ export default function Restaurant({ restaurant, defaultOpen }) {
 
     const body = isOpen && (
         <>
-            <img src={restaurant.image} width="100px" height="100px" alt=""></img>
+            <img src={restaurant.image} width="60px" height="60px" alt=""></img>
+            <RestaurantMenu menu={restaurant.menu}></RestaurantMenu>
             <ReviewList reviews={restaurant.reviews}></ReviewList>
         </>
     );
 
     return (
-        <div style={{ marginTop: '20px' }}>
-            <h3>{restaurant.name}</h3>
+        <div className="restaurant-container">
+            <h2 className="restaurant-title">{restaurant.name}</h2>
             {body}
             <div>
                 <Button type="primary" onClick={() => setOpen(prevState => !prevState)}>

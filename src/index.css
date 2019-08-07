@@ -1,38 +1,64 @@
-
 * {
-  margin:0;
-  padding:0;
-  outline:0;
-  border:0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
 }
-html, body {
-background:#fff;
-  color:#000;
-  font-size:18px;
-  font-family: Tahoma;
-
+html,
+body {
+    background: #fff;
+    color: #000;
+    font-size: 18px;
+    font-family: Tahoma;
 }
 
-div	{
-  position:relative;
+div {
+    position: relative;
 }
 
 .clear {
-  clear:both;
-  height:0;
+    clear: both;
+    height: 0;
 }
 .clearfix {
-  *zoom: 1;
+    *zoom: 1;
 }
 .clearfix:before,
 .clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
+    display: table;
+    content: '';
+    line-height: 0;
 }
 .clearfix:after {
-  clear: both;
+    clear: both;
 }
 
 /* --------------------------------------------- */
 
+.app-title {
+    font-style: italic;
+    padding-left: 10px;
+    color: #395ead;
+}
+
+.restaurant-container {
+    margin-bottom: 40px;
+    padding-left: 20px;
+}
+
+.restaurant-title {
+    display: inline-block;
+    margin-right: 20px;
+    color: #070329;
+}
+
+.order-form-container {
+    padding-left: 10px;
+}
+
+.reviews-container,
+.review-container,
+.restaurant-menu-container,
+.dish-container {
+    margin: 10px 0;
+}

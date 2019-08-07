@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'antd';
+import { Button, Row, Col } from 'antd';
 import Review from './Review';
 
 export default function ReviewList({ reviews }) {
@@ -7,15 +7,19 @@ export default function ReviewList({ reviews }) {
 
     console.log(reviews);
 
-    const body = state && reviews.map(review => <Review review={review} key={review.id}></Review>);
+    const body = state && (
+        <Row gutter={8} type="flex" justify="end">
+            {reviews.map(review => (
+                <Col key={review.id} span={3}>
+                    <Review review={review}></Review>
+                </Col>
+            ))}
+        </Row>
+    );
 
     return (
-        <div>
-            <Button
-                type="danger"
-                onClick={() => setState(prevState => !prevState)}
-                style={{ margin: '10px 0' }}
-            >
+        <div className="reviews-container">
+            <Button type="default" onClick={() => setState(prevState => !prevState)}>
                 {state ? 'Close reviews' : 'Open reviews'}
             </Button>
             {body}

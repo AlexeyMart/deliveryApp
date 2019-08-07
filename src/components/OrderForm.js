@@ -13,8 +13,8 @@ export default function OrderForm() {
     };
 
     return (
-        <>
-            <h3 style={{ marginTop: '50px' }}>Order</h3>
+        <div className="order-form-container">
+            <h3>Order</h3>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Item style={{ margin: 0 }}>
@@ -48,11 +48,11 @@ export default function OrderForm() {
                 </Form.Item>
 
                 <Form.Item style={{ margin: 0 }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="danger" htmlType="submit">
                         Order
                     </Button>
                 </Form.Item>
             </Form>
-        </>
+        </div>
     );
 }
