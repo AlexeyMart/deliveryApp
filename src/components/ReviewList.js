@@ -8,7 +8,7 @@ export default function ReviewList({ reviews }) {
     console.log(reviews);
 
     const body = state && (
-        <Row gutter={8} type="flex" justify="end">
+        <Row gutter={8} type="flex" justify="center">
             {reviews.map(review => (
                 <Col key={review.id} span={3}>
                     <Review review={review}></Review>

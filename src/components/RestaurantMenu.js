@@ -3,7 +3,7 @@ import { Button, Col, Row } from 'antd';
 import Dish from './Dish';
 
 export default function RestaurantMenu({ menu }) {
-    const [state, setState] = useState();
+    const [state, setState] = useState(true);
 
     console.log('menu= ', menu);
 

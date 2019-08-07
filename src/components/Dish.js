@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'antd';
 
-export default function Dish({ dish: { name, price, ingredients } }) {
+export default function Dish({ dish: { name, price, ingredients, image } }) {
     const [amount, setAmount] = useState(0);
 
     const handleDecrement = () => {
@@ -39,7 +39,11 @@ export default function Dish({ dish: { name, price, ingredients } }) {
                         </>,
                     ]}
                 >
-                    <Card.Meta title={name} description={ingredients.join(', ')}></Card.Meta>
+                    <Card.Meta
+                        avatar={<img width="60px" height="60px" src={image} alt=""></img>}
+                        title={name}
+                        description={ingredients.join(', ')}
+                    ></Card.Meta>
                 </Card>
             </>
         </div>

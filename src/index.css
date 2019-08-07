@@ -47,9 +47,9 @@ div {
 }
 
 .restaurant-title {
-    display: inline-block;
     margin-right: 20px;
     color: #070329;
+    font-style: italic;
 }
 
 .order-form-container {
