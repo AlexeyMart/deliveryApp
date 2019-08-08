@@ -38,22 +38,25 @@ div {
 .app-title {
     font-style: italic;
     padding-left: 10px;
-    color: #395ead;
+    color: #1890ff;
+    text-align: center;
 }
 
 .restaurant-container {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     padding-left: 20px;
 }
 
 .restaurant-title {
-    margin-right: 20px;
+    margin-left: 20px;
     color: #070329;
     font-style: italic;
+    display: inline-block;
 }
 
-.order-form-container {
-    padding-left: 10px;
+.order-form-container,
+.filter-container {
+    text-align: center;
 }
 
 .reviews-container,
@@ -61,4 +64,8 @@ div {
 .restaurant-menu-container,
 .dish-container {
     margin: 10px 0;
+}
+
+.btn {
+    display: block;
 }

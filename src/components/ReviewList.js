@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Row, Col } from 'antd';
 import Review from './Review';
+import propTypes from 'prop-types';
 
 export default function ReviewList({ reviews }) {
     const [state, setState] = useState();
 
-    console.log(reviews);
+    console.log('review = ', reviews);
 
     const body = state && (
         <Row gutter={8} type="flex" justify="center">
@@ -26,3 +27,7 @@ export default function ReviewList({ reviews }) {
         </div>
     );
 }
+
+ReviewList.propTypes = {
+    reviews: propTypes.array.isRequired,
+};

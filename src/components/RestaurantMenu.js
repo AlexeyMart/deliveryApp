@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Col, Row } from 'antd';
 import Dish from './Dish';
+import propTypes from 'prop-types';
 
 export default function RestaurantMenu({ menu }) {
     const [state, setState] = useState(true);
 
-    console.log('menu= ', menu);
+    console.log('menu = ', menu);
 
     const body = state && (
         <Row gutter={8} justify="center" type="flex">
@@ -26,3 +27,7 @@ export default function RestaurantMenu({ menu }) {
         </div>
     );
 }
+
+RestaurantMenu.propTypes = {
+    menu: propTypes.array.isRequired,
+};

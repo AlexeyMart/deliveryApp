@@ -1,5 +1,6 @@
 import React from 'react';
 import { Rate, Card } from 'antd';
+import propTypes from 'prop-types';
 
 export default function Review({ review: { user, text, rating } }) {
     console.log(user, text, rating);
@@ -13,3 +14,11 @@ export default function Review({ review: { user, text, rating } }) {
         </div>
     );
 }
+
+Review.propTypes = {
+    review: propTypes.shape({
+        user: propTypes.string,
+        text: propTypes.string,
+        rating: propTypes.number,
+    }).isRequired,
+};

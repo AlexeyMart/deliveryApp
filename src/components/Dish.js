@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'antd';
+import propTypes from 'prop-types';
 
 export default function Dish({ dish: { name, price, ingredients, image } }) {
     const [amount, setAmount] = useState(0);
@@ -49,3 +50,12 @@ export default function Dish({ dish: { name, price, ingredients, image } }) {
         </div>
     );
 }
+
+Dish.propTypes = {
+    dish: propTypes.shape({
+        name: propTypes.string,
+        price: propTypes.number,
+        ingredients: propTypes.array,
+        image: propTypes.string,
+    }).isRequired,
+};
