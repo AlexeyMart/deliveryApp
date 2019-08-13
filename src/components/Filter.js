@@ -1,15 +1,17 @@
 import React from 'react';
 import { Select } from 'antd';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setNewRating } from '../action-creators/index';
 
-export default function Filter({ handleChangeRating }) {
+function Filter({ rating, setRating }) {
     return (
         <div className="filter-container">
             <Select
                 size="small"
                 style={{ width: '100px' }}
-                onChange={value => handleChangeRating(value)}
-                defaultValue={0}
+                onChange={value => setRating(value)}
+                defaultValue={rating}
             >
                 <Select.Option value={0}>All</Select.Option>
                 <Select.Option value={1}>✩</Select.Option>
@@ -25,3 +27,16 @@ export default function Filter({ handleChangeRating }) {
 Filter.propTypes = {
     handleChangeRating: propTypes.func,
 };
+
+const mapStateToProps = store => ({
+    rating: store.rating,
+});
+
+const mapDispatchToProps = {
+    setRating: setNewRating,
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Filter);
