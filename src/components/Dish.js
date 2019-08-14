@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'antd';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addItem, removeItem } from '../action-creators/index';
 
-export default function Dish({ dish: { name, price, ingredients, image } }) {
+function Dish({
+    dish: { name, price, ingredients, image, id },
+    addItemToCart,
+    removeItemFromCart,
+}) {
     const [amount, setAmount] = useState(0);
-
-    const handleDecrement = () => {
-        setAmount(prevState => Math.max(0, prevState - 1));
-    };
 
     const handleIncrement = () => {
         setAmount(prevState => prevState + 1);
+        addItemToCart(id, amount, price, name);
+    };
+
+    const handleDecrement = () => {
+        setAmount(prevState => Math.max(prevState - 1, 0));
+        removeItemFromCart(id, amount, price, name);
     };
 
     return (
@@ -58,4 +66,18 @@ Dish.propTypes = {
         ingredients: propTypes.array,
         image: propTypes.string,
     }).isRequired,
+    addItemToCart: propTypes.func,
+    removeItemFromCart: propTypes.func
 };
+
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = {
+    addItemToCart: addItem,
+    removeItemFromCart: removeItem,
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Dish);

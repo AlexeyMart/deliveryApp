@@ -25,7 +25,8 @@ function Filter({ rating, setRating }) {
 }
 
 Filter.propTypes = {
-    handleChangeRating: propTypes.func,
+    rating: propTypes.number,
+    setRating: propTypes.func
 };
 
 const mapStateToProps = store => ({

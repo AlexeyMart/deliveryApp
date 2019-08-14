@@ -65,3 +65,7 @@ div {
 .dish-container {
     margin: 10px 0;
 }
+
+.cart-container {
+    text-align: center;
+}

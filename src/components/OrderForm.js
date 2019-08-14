@@ -1,15 +1,19 @@
 import React from 'react';
 import { Form, Button, Icon, Input } from 'antd';
 import useInputValue from '../custom-hooks/useInputValue';
+import { connect } from 'react-redux';
+import { getDataForOrderForm } from '../utils/index';
+import propTypes from 'prop-types';
 
-export default function OrderForm() {
+function OrderForm({ orderdata }) {
     const [name, setName] = useInputValue();
     const [telephone, setTelephone] = useInputValue();
     const [adress, setAdress] = useInputValue();
 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log(name, telephone, adress);
+        console.log('name = ', name, 'telephone = ', telephone, 'adress = ', adress);
+        console.log('orderdata = ', orderdata);
     };
 
     return (
@@ -56,3 +60,13 @@ export default function OrderForm() {
         </div>
     );
 }
+
+OrderForm.propTypes = {
+    orderdata: propTypes.object
+}
+
+const mapStateToProps = store => ({
+    orderdata: getDataForOrderForm(store.order),
+});
+
+export default connect(mapStateToProps)(OrderForm);

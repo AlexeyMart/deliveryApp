@@ -1,3 +1,0 @@
-const CHANGE_RATING = 'CHANGE_RATING';
-
-export { CHANGE_RATING };
