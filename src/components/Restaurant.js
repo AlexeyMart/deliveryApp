@@ -8,8 +8,6 @@ import propTypes from 'prop-types';
 export default function Restaurant({ restaurant }) {
     const [isOpen, setOpen] = useState();
 
-    console.log('restaurant = ', restaurant);
-
     const body = isOpen && (
         <>
             <Rate

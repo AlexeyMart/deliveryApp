@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getDataForOrderForm } from '../utils/index';
 import propTypes from 'prop-types';
 
-function OrderForm({ orderdata }) {
+function OrderForm({ orderData }) {
     const [name, setName] = useInputValue();
     const [telephone, setTelephone] = useInputValue();
     const [adress, setAdress] = useInputValue();
@@ -13,7 +13,7 @@ function OrderForm({ orderdata }) {
     const handleSubmit = event => {
         event.preventDefault();
         console.log('name = ', name, 'telephone = ', telephone, 'adress = ', adress);
-        console.log('orderdata = ', orderdata);
+        console.log('orderData = ', orderData);
     };
 
     return (
@@ -62,11 +62,11 @@ function OrderForm({ orderdata }) {
 }
 
 OrderForm.propTypes = {
-    orderdata: propTypes.object
-}
+    orderData: propTypes.object,
+};
 
 const mapStateToProps = store => ({
-    orderdata: getDataForOrderForm(store.order),
+    orderData: getDataForOrderForm(store.order),
 });
 
 export default connect(mapStateToProps)(OrderForm);

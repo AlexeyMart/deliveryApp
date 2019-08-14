@@ -13,8 +13,8 @@ function Cart({ order: [amount, price] }) {
 }
 
 Cart.propTypes = {
-    order: propTypes.array.isRequired
-}
+    order: propTypes.array.isRequired,
+};
 
 const mapStateToProps = store => ({
     order: getDataforCart(store.order),

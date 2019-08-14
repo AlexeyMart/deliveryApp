@@ -22,6 +22,7 @@ RestaurantsList.propTypes = {
 
 const mapStateToProps = store => ({
     rating: store.rating,
+    restaurants: store.restaurants,
 });
 
 export default connect(mapStateToProps)(RestaurantsList);
