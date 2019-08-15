@@ -26,6 +26,7 @@ function Dish({
             <>
                 <Card
                     bordered
+                    cover={<img src={image} height={170} alt=""></img>}
                     actions={[
                         <>
                             <p>Price: {price} $</p>
@@ -48,11 +49,7 @@ function Dish({
                         </>,
                     ]}
                 >
-                    <Card.Meta
-                        avatar={<img width="60px" height="60px" src={image} alt=""></img>}
-                        title={name}
-                        description={ingredients.join(', ')}
-                    ></Card.Meta>
+                    <Card.Meta title={name} description={ingredients.join(', ')}></Card.Meta>
                 </Card>
             </>
         </div>
@@ -67,7 +64,7 @@ Dish.propTypes = {
         image: propTypes.string,
     }).isRequired,
     addItemToCart: propTypes.func,
-    removeItemFromCart: propTypes.func
+    removeItemFromCart: propTypes.func,
 };
 
 const mapStateToProps = () => ({});

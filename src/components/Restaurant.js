@@ -25,7 +25,7 @@ export default function Restaurant({ restaurant }) {
             <Avatar
                 src={restaurant.image}
                 shape="square"
-                size={80}
+                size={100}
                 style={{ marginBottom: '5px' }}
             ></Avatar>
             <h2 className="restaurant-title">{restaurant.name}</h2>

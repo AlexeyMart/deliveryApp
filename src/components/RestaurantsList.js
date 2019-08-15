@@ -1,14 +1,14 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import Restaurant from './Restaurant';
-import { getAverageRestaurantRating } from '../utils/index';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { filtratedRestaurantsSelector } from '../selectors/index';
 
-function RestaurantsList({ restaurants, rating }) {
-    return restaurants
-        .filter(restaurant => getAverageRestaurantRating(restaurant) >= rating)
-        .map(restaurant => <Restaurant restaurant={restaurant} key={restaurant.id}></Restaurant>);
+function RestaurantsList({ restaurants }) {
+    return restaurants.map(restaurant => (
+        <Restaurant restaurant={restaurant} key={restaurant.id}></Restaurant>
+    ));
 }
 
 RestaurantsList.defaultProps = {
@@ -21,8 +21,7 @@ RestaurantsList.propTypes = {
 };
 
 const mapStateToProps = store => ({
-    rating: store.rating,
-    restaurants: store.restaurants,
+    restaurants: filtratedRestaurantsSelector(store),
 });
 
 export default connect(mapStateToProps)(RestaurantsList);

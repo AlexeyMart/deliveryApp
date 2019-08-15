@@ -9,9 +9,9 @@ export default function RestaurantMenu({ menu }) {
     console.log('menu = ', menu);
 
     const body = state && (
-        <Row gutter={8} justify="center" type="flex">
+        <Row gutter={16} justify="center" type="flex">
             {menu.map(dish => (
-                <Col span={4} key={dish.id}>
+                <Col span={3} key={dish.id}>
                     <Dish dish={dish}></Dish>
                 </Col>
             ))}

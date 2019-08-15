@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Button, Icon, Input } from 'antd';
 import useInputValue from '../custom-hooks/useInputValue';
 import { connect } from 'react-redux';
-import { getDataForOrderForm } from '../utils/index';
+import { orderFormSelector } from '../selectors/index';
 import propTypes from 'prop-types';
 
 function OrderForm({ orderData }) {
@@ -66,7 +66,7 @@ OrderForm.propTypes = {
 };
 
 const mapStateToProps = store => ({
-    orderData: getDataForOrderForm(store.order),
+    orderData: orderFormSelector(store),
 });
 
 export default connect(mapStateToProps)(OrderForm);

@@ -3,6 +3,7 @@ import { Select } from 'antd';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setNewRating } from '../action-creators/index';
+import { ratingSelector } from '../selectors/index';
 
 function Filter({ rating, setRating }) {
     return (
@@ -26,11 +27,11 @@ function Filter({ rating, setRating }) {
 
 Filter.propTypes = {
     rating: propTypes.number,
-    setRating: propTypes.func
+    setRating: propTypes.func,
 };
 
 const mapStateToProps = store => ({
-    rating: store.rating,
+    rating: ratingSelector(store),
 });
 
 const mapDispatchToProps = {

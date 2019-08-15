@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getDataforCart } from '../utils/index';
 import propTypes from 'prop-types';
+import { orderCartSelector } from '../selectors/index';
 
 function Cart({ order: [amount, price] }) {
     return (
@@ -17,7 +17,7 @@ Cart.propTypes = {
 };
 
 const mapStateToProps = store => ({
-    order: getDataforCart(store.order),
+    order: orderCartSelector(store),
 });
 
 export default connect(mapStateToProps)(Cart);
