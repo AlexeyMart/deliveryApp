@@ -1,30 +1,34 @@
 import { getAverageRestaurantRating } from '../utils/index';
+import { createSelector } from 'reselect';
 
 const ratingSelector = store => store.rating;
+const restaurantsSelector = store => store.restaurants;
 
-const filtratedRestaurantsSelector = store => {
-    return store.restaurants.filter(
-        restaurant => getAverageRestaurantRating(restaurant) >= store.rating,
-    );
-};
+const filtratedRestaurantsSelector = createSelector(
+    ratingSelector,
+    restaurantsSelector,
+    (rating, restaurants) => {
+        return restaurants.filter(restaurant => getAverageRestaurantRating(restaurant) >= rating);
+    },
+);
 
-const orderCartSelector = store => {
+const orderCartSelector = ({ order }) => {
     let [totalAmount, totalPrice] = [0, 0];
-    for (let key in store.order) {
-        totalAmount += store.order[key].amount;
-        totalPrice += store.order[key].amount * store.order[key].price;
+    for (let key in order) {
+        totalAmount += order[key].amount;
+        totalPrice += order[key].amount * order[key].price;
     }
     return [totalAmount, totalPrice];
 };
 
-const orderFormSelector = store => {
+const orderFormSelector = ({ order }) => {
     let objectToLog = {};
     let totalPrice = 0;
-    for (let key in store.order) {
-        objectToLog[store.order[key].name] = {
-            amount: store.order[key].amount,
-            price: store.order[key].price,
-            DishPrice: store.order[key].amount * store.order[key].price,
+    for (let key in order) {
+        objectToLog[order[key].name] = {
+            amount: order[key].amount,
+            price: order[key].price,
+            DishPrice: order[key].amount * order[key].price,
         };
     }
 
