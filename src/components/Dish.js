@@ -3,6 +3,7 @@ import { Card, Button } from 'antd';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addItem, removeItem } from '../action-creators/index';
+import { dishSelector } from '../selectors/index';
 
 function Dish({
     dish: { name, price, ingredients, image, id },
@@ -49,7 +50,7 @@ function Dish({
                         </>,
                     ]}
                 >
-                    <Card.Meta title={name} description={'hz'}></Card.Meta>
+                    <Card.Meta title={name} description={ingredients.join(' ')}></Card.Meta>
                 </Card>
             </>
         </div>
@@ -67,7 +68,9 @@ Dish.propTypes = {
     removeItemFromCart: propTypes.func,
 };
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (store, ownProps) => ({
+    dish: dishSelector(store, ownProps),
+});
 
 const mapDispatchToProps = {
     addItemToCart: addItem,

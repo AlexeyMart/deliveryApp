@@ -11,8 +11,8 @@ export default function ReviewList({ reviews }) {
     const body = state && (
         <Row gutter={8} type="flex" justify="center">
             {reviews.map(review => (
-                <Col key={review.id} span={3}>
-                    <Review review={review}></Review>
+                <Col key={review} span={3}>
+                    <Review id={review}></Review>
                 </Col>
             ))}
         </Row>

@@ -11,8 +11,8 @@ export default function RestaurantMenu({ menu }) {
     const body = state && (
         <Row gutter={16} justify="center" type="flex">
             {menu.map(dish => (
-                <Col span={3} key={dish.id}>
-                    <Dish dish={dish}></Dish>
+                <Col span={3} key={dish}>
+                    <Dish id={dish}></Dish>
                 </Col>
             ))}
         </Row>

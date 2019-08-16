@@ -7,7 +7,7 @@ import { restaurantsSelector } from '../selectors/index';
 
 function RestaurantsList({ restaurants }) {
     return restaurants.map(restaurant => (
-        <Restaurant restaurantID={restaurant} key={restaurant}></Restaurant>
+        <Restaurant id={restaurant} key={restaurant}></Restaurant>
     ));
 }
 

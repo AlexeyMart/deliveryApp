@@ -5,10 +5,13 @@ const ratingSelector = store => store.rating;
 
 const restaurantsSelector = store => Object.keys(store.restaurants);
 
-const restaurantSelector = (store, {restaurantID}) => store.restaurants[restaurantID];
+const restaurantSelector = (store, { id }) => store.restaurants[id];
 
+const dishSelector = (store, { id }) => store.dishes[id];
 
+const reviewSelector = (store, { id }) => store.reviews[id];
 
+const userSelector = (store, { id }) => store.users[store.reviews[id].userId].name;
 
 // const filtratedRestaurantsSelector = createSelector(
 //     ratingSelector,
@@ -45,4 +48,13 @@ const orderFormSelector = ({ order }) => {
     return objectToLog;
 };
 
-export { ratingSelector, orderCartSelector, orderFormSelector, restaurantsSelector, restaurantSelector };
+export {
+    ratingSelector,
+    orderCartSelector,
+    orderFormSelector,
+    restaurantsSelector,
+    restaurantSelector,
+    dishSelector,
+    reviewSelector,
+    userSelector,
+};

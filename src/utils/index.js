@@ -11,10 +11,13 @@ function getAverageRestaurantRating(restaurant) {
 }
 
 function toKeyValueStructure(array) {
-   return array.reduce((acc, item) => ({
-       ...acc,
-       [item.id]: item 
-   }), {})
+    return array.reduce(
+        (acc, item) => ({
+            ...acc,
+            [item.id]: item,
+        }),
+        {},
+    );
 }
 
 export { deepCloneArray, getAverageRestaurantRating, toKeyValueStructure };

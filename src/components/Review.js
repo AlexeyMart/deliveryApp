@@ -1,8 +1,10 @@
 import React from 'react';
 import { Rate, Card } from 'antd';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { reviewSelector, userSelector } from '../selectors/index';
 
-export default function Review({ review: { user, text, rating } }) {
+function Review({ review: { text, rating }, user }) {
     console.log(user, text, rating);
 
     return (
@@ -22,3 +24,10 @@ Review.propTypes = {
         rating: propTypes.number,
     }).isRequired,
 };
+
+const mapStateToProps = (store, ownProps) => ({
+    review: reviewSelector(store, ownProps),
+    user: userSelector(store, ownProps),
+});
+
+export default connect(mapStateToProps)(Review);

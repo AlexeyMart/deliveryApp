@@ -3,20 +3,16 @@ import { Button, Avatar, Rate } from 'antd';
 import ReviewList from './ReviewList';
 import RestaurantMenu from './RestaurantMenu';
 import propTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {restaurantSelector} from '../selectors/index'
+import { connect } from 'react-redux';
+import { restaurantSelector } from '../selectors/index';
 
-function Restaurant({ restaurantID, restaurant }) {
-    console.log(restaurantID);
+function Restaurant({ restaurant }) {
+    console.log('restaurant = ', restaurant);
     const [isOpen, setOpen] = useState();
 
     const body = isOpen && (
         <>
-            <Rate
-                disabled
-                value={3}
-                style={{ color: '#1890ff', display: 'block' }}
-            ></Rate>
+            <Rate disabled value={3} style={{ color: '#1890ff', display: 'block' }}></Rate>
             <RestaurantMenu menu={restaurant.menu}></RestaurantMenu>
             <ReviewList reviews={restaurant.reviews}></ReviewList>
         </>
@@ -54,7 +50,7 @@ Restaurant.propTypes = {
 };
 
 const mapStateToProps = (store, ownProps) => ({
-    restaurant: restaurantSelector(store, ownProps)
-})
+    restaurant: restaurantSelector(store, ownProps),
+});
 
-export default connect(mapStateToProps)(Restaurant)
+export default connect(mapStateToProps)(Restaurant);
