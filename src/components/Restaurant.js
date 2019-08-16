@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { Button, Avatar, Rate } from 'antd';
 import ReviewList from './ReviewList';
 import RestaurantMenu from './RestaurantMenu';
-import { getAverageRestaurantRating } from '../utils/index';
 import propTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {restaurantSelector} from '../selectors/index'
 
-export default function Restaurant({ restaurant }) {
+function Restaurant({ restaurantID, restaurant }) {
+    console.log(restaurantID);
     const [isOpen, setOpen] = useState();
 
     const body = isOpen && (
         <>
             <Rate
                 disabled
-                value={getAverageRestaurantRating(restaurant)}
+                value={3}
                 style={{ color: '#1890ff', display: 'block' }}
             ></Rate>
             <RestaurantMenu menu={restaurant.menu}></RestaurantMenu>
@@ -50,3 +52,9 @@ Restaurant.propTypes = {
         name: propTypes.string,
     }).isRequired,
 };
+
+const mapStateToProps = (store, ownProps) => ({
+    restaurant: restaurantSelector(store, ownProps)
+})
+
+export default connect(mapStateToProps)(Restaurant)

@@ -49,7 +49,7 @@ function Dish({
                         </>,
                     ]}
                 >
-                    <Card.Meta title={name} description={ingredients.join(', ')}></Card.Meta>
+                    <Card.Meta title={name} description={'hz'}></Card.Meta>
                 </Card>
             </>
         </div>

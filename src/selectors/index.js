@@ -1,16 +1,22 @@
-import { getAverageRestaurantRating } from '../utils/index';
-import { createSelector } from 'reselect';
+// import { getAverageRestaurantRating } from '../utils/index';
+// import { createSelector } from 'reselect';
 
 const ratingSelector = store => store.rating;
-const restaurantsSelector = store => store.restaurants;
 
-const filtratedRestaurantsSelector = createSelector(
-    ratingSelector,
-    restaurantsSelector,
-    (rating, restaurants) => {
-        return restaurants.filter(restaurant => getAverageRestaurantRating(restaurant) >= rating);
-    },
-);
+const restaurantsSelector = store => Object.keys(store.restaurants);
+
+const restaurantSelector = (store, {restaurantID}) => store.restaurants[restaurantID];
+
+
+
+
+// const filtratedRestaurantsSelector = createSelector(
+//     ratingSelector,
+//     restaurantsSelector,
+//     (rating, restaurants) => {
+//         return restaurants.filter(restaurant => getAverageRestaurantRating(restaurant) >= rating);
+//     },
+// );
 
 const orderCartSelector = ({ order }) => {
     let [totalAmount, totalPrice] = [0, 0];
@@ -39,4 +45,4 @@ const orderFormSelector = ({ order }) => {
     return objectToLog;
 };
 
-export { ratingSelector, filtratedRestaurantsSelector, orderCartSelector, orderFormSelector };
+export { ratingSelector, orderCartSelector, orderFormSelector, restaurantsSelector, restaurantSelector };

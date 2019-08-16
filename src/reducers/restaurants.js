@@ -1,5 +1,11 @@
-import { restaurants as defaultRestaurants } from '../fixtures';
+import { normalizedRestaurants } from '../fixtures';
+import {toKeyValueStructure} from '../utils/index';
+
+const defaultRestaurants = toKeyValueStructure(normalizedRestaurants)
 
 export default (restaurants = defaultRestaurants, action) => {
-    return restaurants;
+    switch(action.type) {
+        default:
+            return restaurants
+    }
 };
