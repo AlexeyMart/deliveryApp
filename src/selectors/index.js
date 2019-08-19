@@ -1,12 +1,16 @@
+import { createSelector } from 'reselect';
+
 const ratingSelector = store => store.rating;
 
-const restaurantsSelector = store => Object.keys(store.restaurants);
-
 const restaurantSelector = (store, { id }) => store.restaurants[id];
+
+const restaurantsSelector = store => store.restaurants;
 
 const dishSelector = (store, { id }) => store.dishes[id];
 
 const reviewSelector = (store, { id }) => store.reviews[id];
+
+const reviewsSelector = store => store.reviews;
 
 const userSelector = (store, { id }) => store.users[store.reviews[id].userId].name;
 
@@ -18,11 +22,22 @@ const restaurantRatingSelector = (store, { id }) => {
     );
 };
 
-const filtratedRestaurantsSelector = store => {
-    return restaurantsSelector(store).filter(
-        item => restaurantRatingSelector(store, { id: item }) >= ratingSelector(store),
-    );
-};
+const filtratedRestaurantsSelector = createSelector(
+    ratingSelector,
+    restaurantsSelector,
+    reviewsSelector,
+    (rating, restaurants, reviews) => {
+        console.log(`------FILTER IS WORKING------`);
+        return Object.keys(restaurants).filter(
+            item =>
+                Math.round(
+                    restaurants[item].reviews
+                        .map(item => reviews[item].rating)
+                        .reduce((acc, item, index, arr) => acc + item / arr.length, 0),
+                ) >= rating,
+        );
+    },
+);
 
 const orderCartSelector = ({ order }) => {
     let [totalAmount, totalPrice] = [0, 0];
