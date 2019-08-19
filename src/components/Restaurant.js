@@ -4,15 +4,16 @@ import ReviewList from './ReviewList';
 import RestaurantMenu from './RestaurantMenu';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { restaurantSelector } from '../selectors/index';
+import { restaurantSelector, restaurantRatingSelector } from '../selectors/index';
 
-function Restaurant({ restaurant }) {
+function Restaurant({ restaurant, id, rating }) {
     console.log('restaurant = ', restaurant);
+    console.log(`id = `, id);
     const [isOpen, setOpen] = useState();
 
     const body = isOpen && (
         <>
-            <Rate disabled value={3} style={{ color: '#1890ff', display: 'block' }}></Rate>
+            <Rate disabled value={rating} style={{ color: '#1890ff', display: 'block' }}></Rate>
             <RestaurantMenu menu={restaurant.menu}></RestaurantMenu>
             <ReviewList reviews={restaurant.reviews}></ReviewList>
         </>
@@ -51,6 +52,7 @@ Restaurant.propTypes = {
 
 const mapStateToProps = (store, ownProps) => ({
     restaurant: restaurantSelector(store, ownProps),
+    rating: restaurantRatingSelector(store, ownProps),
 });
 
 export default connect(mapStateToProps)(Restaurant);

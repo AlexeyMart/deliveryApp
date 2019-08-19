@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import Restaurant from './Restaurant';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { restaurantsSelector } from '../selectors/index';
+import { filtratedRestaurantsSelector } from '../selectors/index';
 
 function RestaurantsList({ restaurants }) {
     return restaurants.map(restaurant => (
@@ -21,7 +21,7 @@ RestaurantsList.propTypes = {
 };
 
 const mapStateToProps = store => ({
-    restaurants: restaurantsSelector(store),
+    restaurants: filtratedRestaurantsSelector(store),
 });
 
 export default connect(mapStateToProps)(RestaurantsList);
