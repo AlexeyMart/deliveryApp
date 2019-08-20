@@ -12,6 +12,8 @@ const reviewSelector = (store, { id }) => store.reviews[id];
 
 const reviewsSelector = store => store.reviews;
 
+const reviewListSelector = (store, { restaurantID }) => store.restaurants[restaurantID].reviews;
+
 const userSelector = (store, { id }) => store.users[store.reviews[id].userId].name;
 
 const restaurantRatingSelector = (store, { id }) => {
@@ -76,4 +78,5 @@ export {
     userSelector,
     restaurantRatingSelector,
     filtratedRestaurantsSelector,
+    reviewListSelector,
 };

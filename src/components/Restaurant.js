@@ -15,7 +15,7 @@ function Restaurant({ restaurant, id, rating }) {
         <>
             <Rate disabled value={rating} style={{ color: '#1890ff', display: 'block' }}></Rate>
             <RestaurantMenu menu={restaurant.menu}></RestaurantMenu>
-            <ReviewList reviews={restaurant.reviews}></ReviewList>
+            <ReviewList restaurantID={id}></ReviewList>
         </>
     );
 

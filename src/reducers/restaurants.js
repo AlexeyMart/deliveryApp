@@ -1,10 +1,20 @@
 import { normalizedRestaurants } from '../fixtures';
 import { toKeyValueStructure } from '../utils/index';
+import { ADD_REVIEW } from '../constants/index';
 
 const defaultRestaurants = toKeyValueStructure(normalizedRestaurants);
 
 export default (restaurants = defaultRestaurants, action) => {
-    switch (action.type) {
+    const { type, payload, id } = action;
+    switch (type) {
+        case ADD_REVIEW: {
+            let newState = { ...restaurants };
+            newState[payload.restaurantID].reviews = newState[payload.restaurantID].reviews.concat(
+                id,
+            );
+            return newState;
+        }
+
         default:
             return restaurants;
     }

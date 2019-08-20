@@ -1,4 +1,4 @@
-import { CHANGE_RATING, ADD_ITEM, REMOVE_ITEM } from '../constants/index';
+import { CHANGE_RATING, ADD_ITEM, REMOVE_ITEM, ADD_REVIEW } from '../constants/index';
 
 const setNewRating = value => ({
     type: CHANGE_RATING,
@@ -17,4 +17,10 @@ const removeItem = (id, amount, price, name) => ({
     payload: { id, amount, price, name },
 });
 
-export { setNewRating, addItem, removeItem };
+const addReview = (text, rating, restaurantID) => ({
+    type: ADD_REVIEW,
+    payload: { text, rating, restaurantID },
+    generateID: true,
+});
+
+export { setNewRating, addItem, removeItem, addReview };

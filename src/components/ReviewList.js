@@ -3,8 +3,10 @@ import { Button, Row, Col } from 'antd';
 import Review from './Review';
 import propTypes from 'prop-types';
 import ReviewFeedbackForm from './ReviewFeedbackForm';
+import { connect } from 'react-redux';
+import { reviewListSelector } from '../selectors';
 
-export default function ReviewList({ reviews }) {
+function ReviewList({ reviews, restaurantID }) {
     const [state, setState] = useState();
 
     console.log('review = ', reviews);
@@ -18,7 +20,7 @@ export default function ReviewList({ reviews }) {
                     </Col>
                 ))}
             </Row>
-            <ReviewFeedbackForm></ReviewFeedbackForm>
+            <ReviewFeedbackForm restaurantID={restaurantID}></ReviewFeedbackForm>
         </>
     );
 
@@ -39,3 +41,9 @@ export default function ReviewList({ reviews }) {
 ReviewList.propTypes = {
     reviews: propTypes.array.isRequired,
 };
+
+const mapStateToProps = (store, ownProps) => ({
+    reviews: reviewListSelector(store, ownProps),
+});
+
+export default connect(mapStateToProps)(ReviewList);
