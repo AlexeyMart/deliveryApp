@@ -20,7 +20,11 @@ export default function RestaurantMenu({ menu }) {
 
     return (
         <div className="restaurant-menu-container">
-            <Button type="default" onClick={() => setState(prevState => !prevState)}>
+            <Button
+                style={{ display: 'block', margin: state ? '0 auto' : '0' }}
+                type={state ? 'danger' : 'primary'}
+                onClick={() => setState(prevState => !prevState)}
+            >
                 {state ? 'Close menu' : 'Open menu'}
             </Button>
             {body}

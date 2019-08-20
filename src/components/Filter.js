@@ -12,7 +12,7 @@ function Filter({ rating, setRating }) {
                 size="small"
                 style={{ width: '100px' }}
                 onChange={value => setRating(value)}
-                defaultValue={rating}
+                value={rating}
             >
                 <Select.Option value={0}>All</Select.Option>
                 <Select.Option value={1}>✩</Select.Option>

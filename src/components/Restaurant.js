@@ -32,7 +32,7 @@ function Restaurant({ restaurant, id, rating }) {
             <Button
                 style={{ display: 'block' }}
                 shape="round"
-                type="primary"
+                type={isOpen ? 'danger' : 'primary'}
                 onClick={() => setOpen(prevState => !prevState)}
             >
                 {isOpen ? 'Close' : 'Open'}

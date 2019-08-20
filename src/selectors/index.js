@@ -70,7 +70,6 @@ export {
     ratingSelector,
     orderCartSelector,
     orderFormSelector,
-    restaurantsSelector,
     restaurantSelector,
     dishSelector,
     reviewSelector,
