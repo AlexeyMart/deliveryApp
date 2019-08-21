@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { Form, Button, Rate, Input, Card, Icon } from 'antd';
-import useInputValue from '../custom-hooks/useInputValue';
 import { addReview } from '../action-creators/index';
 import { connect } from 'react-redux';
 
 function ReviewFeedbackForm({ restaurantID, addNewReview }) {
-    const [feedbackText, setFeedbackText] = useInputValue();
+    const [feedbackText, setFeedbackText] = useState();
     const [feedbackRating, setFeedbackRating] = useState(0);
 
     const handleSubmit = event => {
         event.preventDefault();
         addNewReview(feedbackText, feedbackRating, restaurantID);
+        setFeedbackText();
+        setFeedbackRating(0);
     };
 
     const handleSetRating = value => setFeedbackRating(value);
+
+    const handleChangeInputValue = event => setFeedbackText(event.target.value);
 
     return (
         <div className="review-feedbackform-container">
@@ -25,7 +28,7 @@ function ReviewFeedbackForm({ restaurantID, addNewReview }) {
                             style={{ width: '300px' }}
                             placeholder="your feedback"
                             value={feedbackText}
-                            onChange={setFeedbackText}
+                            onChange={handleChangeInputValue}
                         ></Input>
                     </Form.Item>
 

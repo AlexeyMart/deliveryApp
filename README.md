@@ -1,5 +1,5 @@
 # deliveryApp
 
-# styling by Ant Design
+styling by Ant Design
 
-# stack: React, Redux, Reselect
+React, redux, react-redux, reselect, prop-types, uuid
