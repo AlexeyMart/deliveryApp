@@ -43,8 +43,8 @@ div {
 }
 
 .restaurant-container {
-    margin-bottom: 30px;
-    padding-left: 40px;
+    padding: 0 40px;
+    border-bottom: 1px solid #e8e8e8;
 }
 
 .restaurant-title {
@@ -68,4 +68,5 @@ div {
 
 .cart-container {
     text-align: center;
+    margin-top: 10px;
 }

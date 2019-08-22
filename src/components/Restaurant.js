@@ -21,22 +21,26 @@ function Restaurant({ restaurant, id, rating }) {
 
     return (
         <div className="restaurant-container">
-            <Avatar
-                src={restaurant.image}
-                shape="square"
-                size={100}
-                style={{ marginBottom: '5px' }}
-            ></Avatar>
-            <h2 className="restaurant-title">{restaurant.name}</h2>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Avatar
+                    src={restaurant.image}
+                    shape="square"
+                    size={70}
+                    style={{ marginBottom: '5px' }}
+                ></Avatar>
+                <h2 className="restaurant-title">{restaurant.name}</h2>
+
+                <Button
+                    style={{ marginLeft: 'auto' }}
+                    shape="round"
+                    type={isOpen ? 'danger' : 'primary'}
+                    onClick={() => setOpen(prevState => !prevState)}
+                >
+                    {isOpen ? 'Close' : 'Open'}
+                </Button>
+            </div>
+
             {body}
-            <Button
-                style={{ display: 'block' }}
-                shape="round"
-                type={isOpen ? 'danger' : 'primary'}
-                onClick={() => setOpen(prevState => !prevState)}
-            >
-                {isOpen ? 'Close' : 'Open'}
-            </Button>
         </div>
     );
 }
