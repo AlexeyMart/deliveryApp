@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Button } from 'antd';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addItem, removeItem } from '../action-creators/index';
-import { dishSelector } from '../selectors/index';
+import { dishSelector, amountDishSelector } from '../selectors/index';
 
 function Dish({
+    amount,
     dish: { name, price, ingredients, image, id },
     addItemToCart,
     removeItemFromCart,
 }) {
-    const [amount, setAmount] = useState(0);
-
     const handleIncrement = () => {
-        setAmount(prevState => prevState + 1);
         addItemToCart(id, amount, price, name);
     };
 
     const handleDecrement = () => {
-        setAmount(prevState => Math.max(prevState - 1, 0));
         removeItemFromCart(id, amount, price, name);
     };
 
@@ -70,6 +67,7 @@ Dish.propTypes = {
 
 const mapStateToProps = (store, ownProps) => ({
     dish: dishSelector(store, ownProps),
+    amount: amountDishSelector(store, ownProps),
 });
 
 const mapDispatchToProps = {

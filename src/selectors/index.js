@@ -68,6 +68,12 @@ const orderFormSelector = ({ order }) => {
     return objectToLog;
 };
 
+const amountDishSelector = (store, ownProps) => {
+    return Object.keys(store.order).some(item => item === ownProps.id)
+        ? store.order[ownProps.id].amount
+        : 0;
+};
+
 export {
     ratingSelector,
     orderCartSelector,
@@ -79,4 +85,5 @@ export {
     restaurantRatingSelector,
     filtratedRestaurantsSelector,
     reviewListSelector,
+    amountDishSelector,
 };
