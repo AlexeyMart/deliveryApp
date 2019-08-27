@@ -1,18 +1,23 @@
-import { normalizedRestaurants } from '../fixtures';
 import { toKeyValueStructure } from '../utils/index';
-import { ADD_REVIEW } from '../constants/index';
+import { ADD_REVIEW, LOAD_ALL_RESTAURANTS } from '../constants/index';
 import produce from 'immer';
 
-const defaultRestaurants = toKeyValueStructure(normalizedRestaurants);
-
 export default produce((state, action) => {
-    const { type, payload, id } = action;
+    const { type, payload, id, response } = action;
+
     switch (type) {
         case ADD_REVIEW:
             state[payload.restaurantID].reviews.push(id);
+            return;
+
+        case LOAD_ALL_RESTAURANTS:
+            return toKeyValueStructure(response);
         //no default
     }
-}, defaultRestaurants);
+}, {});
+
+// import { normalizedRestaurants } from '../fixtures';
+// const defaultRestaurants = toKeyValueStructure(normalizedRestaurants);
 
 // export default (restaurants = defaultRestaurants, action) => {
 //     const { type, payload, id } = action;

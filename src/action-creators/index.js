@@ -1,4 +1,10 @@
-import { CHANGE_RATING, ADD_ITEM, REMOVE_ITEM, ADD_REVIEW } from '../constants/index';
+import {
+    CHANGE_RATING,
+    ADD_ITEM,
+    REMOVE_ITEM,
+    ADD_REVIEW,
+    LOAD_ALL_RESTAURANTS,
+} from '../constants/index';
 
 const setNewRating = value => ({
     type: CHANGE_RATING,
@@ -23,4 +29,9 @@ const addReview = (text, rating, restaurantID) => ({
     generateID: true,
 });
 
-export { setNewRating, addItem, removeItem, addReview };
+const loadAllRestaurants = () => ({
+    type: LOAD_ALL_RESTAURANTS,
+    callAPI: '/api/restaurants',
+});
+
+export { setNewRating, addItem, removeItem, addReview, loadAllRestaurants };
