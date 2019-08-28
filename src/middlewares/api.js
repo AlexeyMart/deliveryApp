@@ -1,14 +1,30 @@
+import { START, SUCCESS, ERROR } from '../constants/index';
+
 export default store => next => async action => {
-    const { callAPI } = action;
+    const { callAPI, type, ...rest } = action;
+
+    // console.log(`type = `, type);
+    // console.log('rest = ', rest);
+
     if (!callAPI) {
         return next(action);
     }
 
-    const rawRes = await fetch(callAPI);
-    const response = await rawRes.json();
+    try {
+        next({
+            ...rest,
+            type: type + START,
+        });
 
-    next({
-        ...action,
-        response,
-    });
+        const rawRes = await fetch(callAPI);
+        const response = await rawRes.json();
+
+        next({
+            ...rest,
+            type: type + SUCCESS,
+            response,
+        });
+    } catch (err) {
+        next({ ...rest, type: type + ERROR, err });
+    }
 };

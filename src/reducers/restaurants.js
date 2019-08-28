@@ -1,5 +1,5 @@
 import { toKeyValueStructure } from '../utils/index';
-import { ADD_REVIEW, LOAD_ALL_RESTAURANTS } from '../constants/index';
+import { ADD_REVIEW, LOAD_ALL_RESTAURANTS, SUCCESS } from '../constants/index';
 import produce from 'immer';
 
 export default produce((state, action) => {
@@ -10,7 +10,7 @@ export default produce((state, action) => {
             state[payload.restaurantID].reviews.push(id);
             return;
 
-        case LOAD_ALL_RESTAURANTS:
+        case LOAD_ALL_RESTAURANTS + SUCCESS:
             return toKeyValueStructure(response);
         //no default
     }
