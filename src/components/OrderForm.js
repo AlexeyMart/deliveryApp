@@ -14,7 +14,7 @@ function OrderForm({ orderData }) {
         event.preventDefault();
         console.log('name = ', name, 'telephone = ', telephone, 'adress = ', adress);
         console.log('orderData = ', orderData);
-        alert('look at console.log!')
+        alert('look at orderData in console!');
     };
 
     return (

@@ -1,40 +1,36 @@
-import { normalizedReviews } from '../fixtures';
 import { toKeyValueStructure } from '../utils/index';
-import { ADD_REVIEW } from '../constants/index';
+import { ADD_REVIEW, LOAD_ALL_REVIEWS, ERROR, START, SUCCESS } from '../constants/index';
 import produce from 'immer';
 
-const defaultReviews = toKeyValueStructure(normalizedReviews);
+export default produce(
+    (state, action) => {
+        const { type, payload, id, response, err } = action;
+        switch (type) {
+            case ADD_REVIEW:
+                state[id] = {
+                    id,
+                    userId: id,
+                    text: payload.text,
+                    rating: payload.rating,
+                };
+                return;
 
-export default produce((state, action) => {
-    const { type, payload, id } = action;
-    switch (type) {
-        case ADD_REVIEW:
-            state[id] = {
-                id,
-                userId: id,
-                text: payload.text,
-                rating: payload.rating,
-            };
-        // no default
-    }
-}, defaultReviews);
+            case LOAD_ALL_REVIEWS + START:
+                state.loading = true;
+                return;
 
-// export default (reviews = defaultReviews, action) => {
-//     const { type, payload, generateID, id } = action;
-//     switch (type) {
-//         case ADD_REVIEW: {
-//             console.log(type, payload.text, payload.rating, payload.restaurantID, generateID, id);
-//             return {
-//                 ...reviews,
-//                 [id]: {
-//                     id,
-//                     userId: id,
-//                     text: payload.text,
-//                     rating: payload.rating,
-//                 },
-//             };
-//         }
-//         default:
-//             return reviews;
-//     }
-// };
+            case LOAD_ALL_REVIEWS + SUCCESS:
+                let newState = toKeyValueStructure(response);
+                newState.loading = false;
+                return newState;
+
+            case LOAD_ALL_REVIEWS + ERROR:
+                state.loading = false;
+                state.error = err;
+                return;
+
+            // no default
+        }
+    },
+    { loading: false },
+);

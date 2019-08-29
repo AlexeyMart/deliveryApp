@@ -4,6 +4,10 @@ import {
     REMOVE_ITEM,
     ADD_REVIEW,
     LOAD_ALL_RESTAURANTS,
+    START,
+    SUCCESS,
+    ERROR,
+    LOAD_ALL_REVIEWS,
 } from '../constants/index';
 
 const setNewRating = value => ({
@@ -29,9 +33,38 @@ const addReview = (text, rating, restaurantID) => ({
     generateID: true,
 });
 
-const loadAllRestaurants = () => ({
-    type: LOAD_ALL_RESTAURANTS,
-    callAPI: '/api/restaurants',
-});
+// const loadAllRestaurants = () => ({
+//     type: LOAD_ALL_RESTAURANTS,
+//     callAPI: '/api/restaurants',
+// });
 
-export { setNewRating, addItem, removeItem, addReview, loadAllRestaurants };
+const loadAllRestaurants = () => async dispatch => {
+    try {
+        dispatch({ type: LOAD_ALL_RESTAURANTS + START });
+
+        const rawRes = await fetch('/api/restaurants');
+        const response = await rawRes.json();
+
+        dispatch({
+            type: LOAD_ALL_RESTAURANTS + SUCCESS,
+            response,
+        });
+    } catch (err) {
+        dispatch({ type: LOAD_ALL_RESTAURANTS + ERROR, err });
+    }
+};
+
+const loadAllReviews = () => async dispatch => {
+    try {
+        dispatch({ type: LOAD_ALL_REVIEWS + START });
+
+        const rawRes = await fetch('/api/reviews');
+        const response = await rawRes.json();
+
+        dispatch({ type: LOAD_ALL_REVIEWS + SUCCESS, response });
+    } catch (err) {
+        dispatch({ type: LOAD_ALL_REVIEWS + ERROR, err });
+    }
+};
+
+export { setNewRating, addItem, removeItem, addReview, loadAllRestaurants, loadAllReviews };

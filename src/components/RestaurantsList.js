@@ -1,36 +1,49 @@
 import React, { useEffect } from 'react';
-import 'antd/dist/antd.css';
 import Restaurant from './Restaurant';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { filtratedRestaurantsSelector } from '../selectors/index';
-import { loadAllRestaurants } from '../action-creators/index';
+import {
+    filtratedRestaurantsSelector,
+    loadingRestaurants,
+    loadingReviews,
+} from '../selectors/index';
+import { loadAllRestaurants, loadAllReviews } from '../action-creators/index';
+import Loader from './Loader';
 
-function RestaurantsList({ restaurants, loadAllRestaurants }) {
+function RestaurantsList({
+    restaurants,
+    loadAllRestaurants,
+    loadAllReviews,
+    isRestaurantsLoading,
+    isReviewsLoading,
+}) {
     useEffect(() => {
+        loadAllReviews();
         loadAllRestaurants();
     }, []);
+
+    if (isRestaurantsLoading || isReviewsLoading) {
+        return <Loader></Loader>;
+    }
 
     return restaurants.map(restaurant => (
         <Restaurant id={restaurant} key={restaurant}></Restaurant>
     ));
 }
 
-RestaurantsList.defaultProps = {
-    rating: 0,
-};
-
 RestaurantsList.propTypes = {
     restaurants: propTypes.array.isRequired,
-    rating: propTypes.number,
 };
 
 const mapStateToProps = store => ({
     restaurants: filtratedRestaurantsSelector(store),
+    isRestaurantsLoading: loadingRestaurants(store),
+    isReviewsLoading: loadingReviews(store),
 });
 
 const mapDispatchToProps = {
     loadAllRestaurants,
+    loadAllReviews,
 };
 
 export default connect(

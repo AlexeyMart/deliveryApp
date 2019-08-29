@@ -19,7 +19,6 @@ function Review({ review: { text, rating }, user }) {
 
 Review.propTypes = {
     review: propTypes.shape({
-        user: propTypes.string,
         text: propTypes.string,
         rating: propTypes.number,
     }).isRequired,

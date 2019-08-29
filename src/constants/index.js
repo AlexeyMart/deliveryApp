@@ -14,6 +14,8 @@ const SUCCESS = '_SUCCESS';
 
 const ERROR = '_ERROR';
 
+const LOAD_ALL_REVIEWS = 'LOAD_ALL_REVIEWS';
+
 export {
     CHANGE_RATING,
     REMOVE_ITEM,
@@ -23,4 +25,5 @@ export {
     START,
     SUCCESS,
     ERROR,
+    LOAD_ALL_REVIEWS,
 };

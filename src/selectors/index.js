@@ -30,14 +30,16 @@ const filtratedRestaurantsSelector = createSelector(
     reviewsSelector,
     (rating, restaurants, reviews) => {
         console.log(`------FILTER IS WORKING------`);
-        return Object.keys(restaurants).filter(
-            item =>
-                Math.round(
-                    restaurants[item].reviews
-                        .map(item => reviews[item].rating)
-                        .reduce((acc, item, index, arr) => acc + item / arr.length, 0),
-                ) >= rating,
-        );
+        return Object.keys(restaurants)
+            .filter(item => item !== 'loading' && item !== 'isLoaded')
+            .filter(
+                item =>
+                    Math.round(
+                        restaurants[item].reviews
+                            .map(item => reviews[item].rating)
+                            .reduce((acc, item, index, arr) => acc + item / arr.length, 0),
+                    ) >= rating,
+            );
     },
 );
 
@@ -74,6 +76,10 @@ const amountDishSelector = (store, ownProps) => {
         : 0;
 };
 
+const loadingRestaurants = store => store.restaurants.loading;
+
+const loadingReviews = store => store.reviews.loading;
+
 export {
     ratingSelector,
     orderCartSelector,
@@ -86,4 +92,6 @@ export {
     filtratedRestaurantsSelector,
     reviewListSelector,
     amountDishSelector,
+    loadingRestaurants,
+    loadingReviews,
 };

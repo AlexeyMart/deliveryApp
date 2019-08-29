@@ -7,13 +7,12 @@ import { connect } from 'react-redux';
 import { restaurantSelector, restaurantRatingSelector } from '../selectors/index';
 
 function Restaurant({ restaurant, id, rating }) {
-    console.log('restaurant = ', restaurant);
-    console.log(`id = `, id);
+    // console.log('restaurant = ', restaurant);
+    // console.log(`id = `, id);
     const [isOpen, setOpen] = useState();
 
     const body = isOpen && (
         <>
-            <Rate disabled value={rating} style={{ color: '#1890ff', display: 'block' }}></Rate>
             <RestaurantMenu menu={restaurant.menu}></RestaurantMenu>
             <ReviewList restaurantID={id}></ReviewList>
         </>
@@ -30,8 +29,9 @@ function Restaurant({ restaurant, id, rating }) {
                 ></Avatar>
                 <h2 className="restaurant-title">{restaurant.name}</h2>
 
+                <Rate disabled value={rating} style={{ margin: 'auto 60px auto auto' }}></Rate>
+
                 <Button
-                    style={{ marginLeft: 'auto' }}
                     shape="round"
                     type={isOpen ? 'danger' : 'primary'}
                     onClick={() => setOpen(prevState => !prevState)}
@@ -48,7 +48,6 @@ function Restaurant({ restaurant, id, rating }) {
 Restaurant.propTypes = {
     restaurant: propTypes.shape({
         menu: propTypes.array,
-        reviews: propTypes.array,
         image: propTypes.string,
         name: propTypes.string,
     }).isRequired,
