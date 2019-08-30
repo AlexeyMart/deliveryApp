@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Row, Col } from 'antd';
 import Review from './Review';
 import propTypes from 'prop-types';
 import ReviewFeedbackForm from './ReviewFeedbackForm';
 import { connect } from 'react-redux';
 import { reviewListSelector } from '../selectors';
+import { loadAllUsers } from '../action-creators/index';
 
-function ReviewList({ reviews, restaurantID }) {
+function ReviewList({ reviews, restaurantID, loadAllUsers }) {
+    useEffect(() => {
+        loadAllUsers();
+    }, []);
+
     const [state, setState] = useState();
 
     console.log('review = ', reviews);
@@ -46,4 +51,11 @@ const mapStateToProps = (store, ownProps) => ({
     reviews: reviewListSelector(store, ownProps),
 });
 
-export default connect(mapStateToProps)(ReviewList);
+const mapDispatchToProps = {
+    loadAllUsers,
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(ReviewList);

@@ -13,7 +13,7 @@ function Restaurant({ restaurant, id, rating }) {
 
     const body = isOpen && (
         <>
-            <RestaurantMenu menu={restaurant.menu}></RestaurantMenu>
+            <RestaurantMenu restaurantID={id} menu={restaurant.menu}></RestaurantMenu>
             <ReviewList restaurantID={id}></ReviewList>
         </>
     );

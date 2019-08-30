@@ -1,7 +1,7 @@
 var router = require("express").Router();
 var mocks = require("./mock");
 
-const reply = (res, body, timeout = 2000, status = 200) =>
+const reply = (res, body, timeout = 1000, status = 200) =>
   setTimeout(() => {
     res.status(status).json(body);
   }, timeout);

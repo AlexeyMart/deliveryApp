@@ -80,6 +80,10 @@ const loadingRestaurants = store => store.restaurants.loading;
 
 const loadingReviews = store => store.reviews.loading;
 
+const loadingRestaurantMenu = (store, ownProps) => store.dishes.loading[ownProps.restaurantID];
+
+const loadedRestaurantMenu = (store, ownProps) => store.dishes.loaded[ownProps.restaurantID];
+
 export {
     ratingSelector,
     orderCartSelector,
@@ -94,4 +98,6 @@ export {
     amountDishSelector,
     loadingRestaurants,
     loadingReviews,
+    loadingRestaurantMenu,
+    loadedRestaurantMenu,
 };

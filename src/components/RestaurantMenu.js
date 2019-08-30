@@ -1,21 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Col, Row } from 'antd';
 import Dish from './Dish';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loadRestaurantMenu } from '../action-creators/index';
+import { loadingRestaurantMenu, loadedRestaurantMenu } from '../selectors/index';
+import Loader from './Loader';
 
-export default function RestaurantMenu({ menu }) {
-    const [state, setState] = useState(true);
+function RestaurantMenu({ menu, restaurantID, loadRestaurantMenu, loading, loaded }) {
+    const [state, setState] = useState(false);
 
-    console.log('menu = ', menu);
+    useEffect(() => {
+        if (!loaded) {
+            loadRestaurantMenu(restaurantID);
+        }
+        setState(prevState => !prevState);
+    }, []);
 
-    const body = state && (
-        <Row gutter={16} justify="center" type="flex">
-            {menu.map(dish => (
-                <Col span={3} key={dish}>
-                    <Dish id={dish}></Dish>
-                </Col>
-            ))}
-        </Row>
+    // console.log(`-----loading = `, loading);
+
+    // console.log(`-----loaded = `, loaded);
+
+    // console.log('restaurantID = ', restaurantID);
+
+    // console.log('menu = ', menu);
+
+    const body = loading ? (
+        <Loader></Loader>
+    ) : (
+        state && (
+            <Row gutter={16} justify="center" type="flex">
+                {menu.map(dish => (
+                    <Col span={3} key={dish}>
+                        <Dish id={dish}></Dish>
+                    </Col>
+                ))}
+            </Row>
+        )
     );
 
     return (
@@ -35,3 +56,17 @@ export default function RestaurantMenu({ menu }) {
 RestaurantMenu.propTypes = {
     menu: propTypes.array.isRequired,
 };
+
+const mapStateToProps = (store, ownProps) => ({
+    loading: loadingRestaurantMenu(store, ownProps),
+    loaded: loadedRestaurantMenu(store, ownProps),
+});
+
+const mapDispatchToProps = {
+    loadRestaurantMenu,
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(RestaurantMenu);

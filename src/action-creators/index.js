@@ -8,6 +8,8 @@ import {
     SUCCESS,
     ERROR,
     LOAD_ALL_REVIEWS,
+    LOAD_RESTAURANT_MENU,
+    LOAD_ALL_USERS,
 } from '../constants/index';
 
 const setNewRating = value => ({
@@ -67,4 +69,61 @@ const loadAllReviews = () => async dispatch => {
     }
 };
 
-export { setNewRating, addItem, removeItem, addReview, loadAllRestaurants, loadAllReviews };
+const loadRestaurantMenu = restaurantID => async dispatch => {
+    try {
+        dispatch({
+            type: LOAD_RESTAURANT_MENU + START,
+            payload: {
+                restaurantID,
+            },
+        });
+
+        const rawRes = await fetch(`api/dishes?id=${restaurantID}`);
+        const response = await rawRes.json();
+
+        dispatch({
+            type: LOAD_RESTAURANT_MENU + SUCCESS,
+            response,
+            payload: {
+                restaurantID,
+            },
+        });
+    } catch (err) {
+        dispatch({
+            type: LOAD_RESTAURANT_MENU + ERROR,
+            err,
+        });
+    }
+};
+
+const loadAllUsers = () => async dispatch => {
+    try {
+        dispatch({
+            type: LOAD_ALL_USERS + START,
+        });
+
+        const rawRes = await fetch('/api/users');
+        const response = await rawRes.json();
+
+        dispatch({
+            type: LOAD_ALL_USERS + SUCCESS,
+            response,
+        });
+    } catch (err) {
+        dispatch({
+            type: LOAD_ALL_USERS + ERROR,
+            err,
+        });
+    }
+};
+
+export {
+    setNewRating,
+    addItem,
+    removeItem,
+    addReview,
+    loadAllRestaurants,
+    loadAllReviews,
+    loadRestaurantMenu,
+    loadAllUsers,
+};
