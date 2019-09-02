@@ -32,7 +32,7 @@ function RestaurantMenu({ menu, restaurantID, loadRestaurantMenu, loading, loade
             <Row gutter={16} justify="center" type="flex">
                 {menu.map(dish => (
                     <Col span={3} key={dish}>
-                        <Dish id={dish}></Dish>
+                        <Dish restaurantID={restaurantID} id={dish}></Dish>
                     </Col>
                 ))}
             </Row>

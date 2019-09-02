@@ -9,6 +9,7 @@ export default produce((state, action) => {
                 amount: payload.amount + 1,
                 price: payload.price,
                 name: payload.name,
+                restaurant: payload.restaurant,
             };
             return;
         case REMOVE_ITEM:
@@ -18,6 +19,7 @@ export default produce((state, action) => {
                       amount: Math.max(payload.amount - 1, 0),
                       price: payload.price,
                       name: payload.name,
+                      restaurant: payload.restaurant,
                   });
         // no default
     }

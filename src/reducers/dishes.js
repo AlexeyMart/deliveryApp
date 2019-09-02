@@ -12,8 +12,9 @@ export default produce(
                 return;
 
             case LOAD_RESTAURANT_MENU + SUCCESS:
-                for (let key in toKeyValueStructure(response)) {
-                    state[key] = toKeyValueStructure(response)[key];
+                let draft = toKeyValueStructure(response);
+                for (let key in draft) {
+                    state[key] = draft[key];
                 }
                 state.loading[payload.restaurantID] = false;
                 state.loaded[payload.restaurantID] = true;

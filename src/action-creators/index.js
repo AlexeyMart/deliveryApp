@@ -19,14 +19,14 @@ const setNewRating = value => ({
     },
 });
 
-const addItem = (id, amount, price, name) => ({
+const addItem = (id, amount, price, name, restaurant) => ({
     type: ADD_ITEM,
-    payload: { id, amount, price, name },
+    payload: { id, amount, price, name, restaurant },
 });
 
-const removeItem = (id, amount, price, name) => ({
+const removeItem = (id, amount, price, name, restaurant) => ({
     type: REMOVE_ITEM,
-    payload: { id, amount, price, name },
+    payload: { id, amount, price, name, restaurant },
 });
 
 const addReview = (text, rating, restaurantID) => ({

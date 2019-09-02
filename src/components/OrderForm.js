@@ -19,8 +19,6 @@ function OrderForm({ orderData }) {
 
     return (
         <div className="order-form-container">
-            <h3>Order</h3>
-
             <Form onSubmit={handleSubmit}>
                 <Form.Item style={{ margin: 0 }}>
                     <Input

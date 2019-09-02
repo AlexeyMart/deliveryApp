@@ -60,6 +60,7 @@ const orderFormSelector = ({ order }) => {
             amount: order[key].amount,
             price: order[key].price,
             DishPrice: order[key].amount * order[key].price,
+            restaurant: order[key].restaurant,
         };
     }
 
@@ -84,6 +85,8 @@ const loadingRestaurantMenu = (store, ownProps) => store.dishes.loading[ownProps
 
 const loadedRestaurantMenu = (store, ownProps) => store.dishes.loaded[ownProps.restaurantID];
 
+const restaurantTitleSelector = (store, ownProps) => store.restaurants[ownProps.restaurantID].name;
+
 export {
     ratingSelector,
     orderCartSelector,
@@ -100,4 +103,5 @@ export {
     loadingReviews,
     loadingRestaurantMenu,
     loadedRestaurantMenu,
+    restaurantTitleSelector,
 };

@@ -21,9 +21,9 @@ export default produce(
                 return;
 
             case LOAD_ALL_RESTAURANTS + SUCCESS:
-                let newState = toKeyValueStructure(response);
-                newState.loading = false;
-                return newState;
+                let draft = toKeyValueStructure(response);
+                draft.loading = false;
+                return draft;
 
             // for (let key in toKeyValueStructure(response)){
             //     state[key] = toKeyValueStructure(response)[key]

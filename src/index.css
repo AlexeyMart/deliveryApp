@@ -57,6 +57,7 @@ div {
 .order-form-container,
 .filter-container {
     text-align: center;
+    margin-top: 20px;
 }
 
 .reviews-container,
@@ -67,7 +68,7 @@ div {
 }
 
 .cart-container {
-    text-align: center;
+    text-align: center; 
     margin-top: 10px;
 }
 

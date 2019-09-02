@@ -3,20 +3,21 @@ import { Card, Button } from 'antd';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addItem, removeItem } from '../action-creators/index';
-import { dishSelector, amountDishSelector } from '../selectors/index';
+import { dishSelector, amountDishSelector, restaurantTitleSelector } from '../selectors/index';
 
 function Dish({
     amount,
+    restaurant,
     dish: { name, price, ingredients, image, id },
     addItemToCart,
     removeItemFromCart,
 }) {
     const handleIncrement = () => {
-        addItemToCart(id, amount, price, name);
+        addItemToCart(id, amount, price, name, restaurant);
     };
 
     const handleDecrement = () => {
-        removeItemFromCart(id, amount, price, name);
+        removeItemFromCart(id, amount, price, name, restaurant);
     };
 
     return (
@@ -68,6 +69,7 @@ Dish.propTypes = {
 const mapStateToProps = (store, ownProps) => ({
     dish: dishSelector(store, ownProps),
     amount: amountDishSelector(store, ownProps),
+    restaurant: restaurantTitleSelector(store, ownProps),
 });
 
 const mapDispatchToProps = {
