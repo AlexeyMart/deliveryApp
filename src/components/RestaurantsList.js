@@ -5,24 +5,20 @@ import { connect } from 'react-redux';
 import {
     filtratedRestaurantsSelector,
     loadingRestaurants,
-    loadingReviews,
+    loadedRestaurants,
 } from '../selectors/index';
 import { loadAllRestaurants, loadAllReviews } from '../action-creators/index';
 import Loader from './Loader';
 
-function RestaurantsList({
-    restaurants,
-    loadAllRestaurants,
-    loadAllReviews,
-    isRestaurantsLoading,
-    isReviewsLoading,
-}) {
+function RestaurantsList({ restaurants, loadAllRestaurants, loadAllReviews, loading, loaded }) {
     useEffect(() => {
-        loadAllReviews();
-        loadAllRestaurants();
+        if (!loaded) {
+            loadAllReviews();
+            loadAllRestaurants();
+        }
     }, []);
 
-    if (isRestaurantsLoading || isReviewsLoading) {
+    if (loading) {
         return <Loader></Loader>;
     }
 
@@ -37,8 +33,8 @@ RestaurantsList.propTypes = {
 
 const mapStateToProps = store => ({
     restaurants: filtratedRestaurantsSelector(store),
-    isRestaurantsLoading: loadingRestaurants(store),
-    isReviewsLoading: loadingReviews(store),
+    loading: loadingRestaurants(store),
+    loaded: loadedRestaurants(store),
 });
 
 const mapDispatchToProps = {

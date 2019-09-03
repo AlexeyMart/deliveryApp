@@ -20,9 +20,9 @@ export default produce(
                 return;
 
             case LOAD_ALL_REVIEWS + SUCCESS:
-                let newState = toKeyValueStructure(response);
-                newState.loading = false;
-                return newState;
+                let draft = toKeyValueStructure(response);
+                draft.loading = false;
+                return draft;
 
             case LOAD_ALL_REVIEWS + ERROR:
                 state.loading = false;

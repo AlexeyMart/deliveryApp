@@ -4,12 +4,14 @@ import Review from './Review';
 import propTypes from 'prop-types';
 import ReviewFeedbackForm from './ReviewFeedbackForm';
 import { connect } from 'react-redux';
-import { reviewListSelector } from '../selectors';
+import { reviewListSelector, loadingUsers } from '../selectors';
 import { loadAllUsers } from '../action-creators/index';
 
-function ReviewList({ reviews, restaurantID, loadAllUsers }) {
+function ReviewList({ reviews, restaurantID, loadAllUsers, loaded }) {
     useEffect(() => {
-        loadAllUsers();
+        if (!loaded) {
+            loadAllUsers();
+        }
     }, []);
 
     const [state, setState] = useState();
@@ -49,6 +51,7 @@ ReviewList.propTypes = {
 
 const mapStateToProps = (store, ownProps) => ({
     reviews: reviewListSelector(store, ownProps),
+    loaded: loadingUsers(store),
 });
 
 const mapDispatchToProps = {

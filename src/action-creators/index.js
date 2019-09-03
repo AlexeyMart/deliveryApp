@@ -69,7 +69,7 @@ const loadAllReviews = () => async dispatch => {
     }
 };
 
-const loadRestaurantMenu = restaurantID => async dispatch => {
+const loadRestaurantMenu = restaurantID => async (dispatch, getState) => {
     try {
         dispatch({
             type: LOAD_RESTAURANT_MENU + START,

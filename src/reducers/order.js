@@ -6,10 +6,11 @@ export default produce((state, action) => {
     switch (type) {
         case ADD_ITEM:
             state[payload.id] = {
-                amount: payload.amount + 1,
-                price: payload.price,
-                name: payload.name,
                 restaurant: payload.restaurant,
+                name: payload.name,
+                price: payload.price,
+                amount: payload.amount + 1,
+                sum: (payload.amount + 1) * payload.price,
             };
             return;
         case REMOVE_ITEM:
@@ -20,6 +21,7 @@ export default produce((state, action) => {
                       price: payload.price,
                       name: payload.name,
                       restaurant: payload.restaurant,
+                      sum: Math.max(payload.amount - 1, 0) * payload.price,
                   });
         // no default
     }

@@ -1,3 +1,5 @@
+import produce from 'immer';
+
 function deepCloneArray(array) {
     return array.map(item => item.slice());
 }
@@ -12,4 +14,14 @@ function toKeyValueStructure(array) {
     );
 }
 
-export { deepCloneArray, toKeyValueStructure };
+const orderToDataSource = order => {
+    const raw = produce(order, draft => {
+        for (let key in draft) {
+            draft[key].key = key;
+        }
+    });
+
+    return Object.values(raw);
+};
+
+export { deepCloneArray, toKeyValueStructure, orderToDataSource };

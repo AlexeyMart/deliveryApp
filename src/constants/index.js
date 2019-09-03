@@ -20,6 +20,41 @@ const LOAD_RESTAURANT_MENU = 'LOAD_RESTAURANT_MENU';
 
 const LOAD_ALL_USERS = 'LOAD_ALL_USERS';
 
+const columnsToOrderTable = [
+    {
+        title: 'Dish',
+        dataIndex: 'name',
+        key: 'name',
+    },
+    {
+        title: 'Price',
+        dataIndex: 'price',
+        key: 'price',
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.price - b.price,
+    },
+    {
+        title: 'Amount',
+        dataIndex: 'amount',
+        key: 'amount',
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.amount - b.amount,
+    },
+    {
+        title: 'Sum',
+        dataIndex: 'sum',
+        key: 'sum',
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.sum - b.sum,
+    },
+    {
+        title: 'Restaurant',
+        dataIndex: 'restaurant',
+        key: 'restaurant',
+        sorter: (a, b) => a.restaurant.length - b.restaurant.length,
+    },
+];
+
 export {
     CHANGE_RATING,
     REMOVE_ITEM,
@@ -32,4 +67,5 @@ export {
     LOAD_ALL_REVIEWS,
     LOAD_RESTAURANT_MENU,
     LOAD_ALL_USERS,
+    columnsToOrderTable,
 };

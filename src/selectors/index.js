@@ -12,6 +12,8 @@ const reviewSelector = (store, { id }) => store.reviews[id];
 
 const reviewsSelector = store => store.reviews;
 
+const orderSelector = store => store.order;
+
 const reviewListSelector = (store, { restaurantID }) => store.restaurants[restaurantID].reviews;
 
 const userSelector = (store, { id }) => store.users[store.reviews[id].userId].name;
@@ -31,7 +33,7 @@ const filtratedRestaurantsSelector = createSelector(
     (rating, restaurants, reviews) => {
         console.log(`------FILTER IS WORKING------`);
         return Object.keys(restaurants)
-            .filter(item => item !== 'loading' && item !== 'isLoaded')
+            .filter(item => item !== 'loading' && item !== 'loaded')
             .filter(
                 item =>
                     Math.round(
@@ -77,15 +79,17 @@ const amountDishSelector = (store, ownProps) => {
         : 0;
 };
 
-const loadingRestaurants = store => store.restaurants.loading;
+const loadingRestaurants = store => store.restaurants.loading || store.reviews.loading;
 
-const loadingReviews = store => store.reviews.loading;
+const loadedRestaurants = store => store.restaurants.loaded;
 
 const loadingRestaurantMenu = (store, ownProps) => store.dishes.loading[ownProps.restaurantID];
 
 const loadedRestaurantMenu = (store, ownProps) => store.dishes.loaded[ownProps.restaurantID];
 
 const restaurantTitleSelector = (store, ownProps) => store.restaurants[ownProps.restaurantID].name;
+
+const loadingUsers = store => store.users.loaded;
 
 export {
     ratingSelector,
@@ -100,8 +104,10 @@ export {
     reviewListSelector,
     amountDishSelector,
     loadingRestaurants,
-    loadingReviews,
     loadingRestaurantMenu,
     loadedRestaurantMenu,
     restaurantTitleSelector,
+    loadingUsers,
+    loadedRestaurants,
+    orderSelector,
 };

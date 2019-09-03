@@ -23,17 +23,11 @@ export default produce(
             case LOAD_ALL_RESTAURANTS + SUCCESS:
                 let draft = toKeyValueStructure(response);
                 draft.loading = false;
+                draft.loaded = true;
                 return draft;
-
-            // for (let key in toKeyValueStructure(response)){
-            //     state[key] = toKeyValueStructure(response)[key]
-            // };
-            // state.loading = false;
-            // state.isLoaded = true;
-            // return;
 
             //no default
         }
     },
-    { loading: false },
+    { loading: false, loaded: false },
 );
