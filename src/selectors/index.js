@@ -89,7 +89,7 @@ const loadedRestaurantMenu = (store, ownProps) => store.dishes.loaded[ownProps.r
 
 const restaurantTitleSelector = (store, ownProps) => store.restaurants[ownProps.restaurantID].name;
 
-const loadingUsers = store => store.users.loaded;
+const loadedUsers = store => store.users.loaded;
 
 export {
     ratingSelector,
@@ -107,7 +107,7 @@ export {
     loadingRestaurantMenu,
     loadedRestaurantMenu,
     restaurantTitleSelector,
-    loadingUsers,
+    loadedUsers,
     loadedRestaurants,
     orderSelector,
 };

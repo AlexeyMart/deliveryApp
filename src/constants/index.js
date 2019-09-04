@@ -20,6 +20,8 @@ const LOAD_RESTAURANT_MENU = 'LOAD_RESTAURANT_MENU';
 
 const LOAD_ALL_USERS = 'LOAD_ALL_USERS';
 
+const CHANGE_LOCATION = '@@router/LOCATION_CHANGE';
+
 const columnsToOrderTable = [
     {
         title: 'Dish',
@@ -68,4 +70,5 @@ export {
     LOAD_RESTAURANT_MENU,
     LOAD_ALL_USERS,
     columnsToOrderTable,
+    CHANGE_LOCATION,
 };

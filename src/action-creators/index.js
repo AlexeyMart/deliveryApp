@@ -1,3 +1,5 @@
+import { push } from 'connected-react-router';
+
 import {
     CHANGE_RATING,
     ADD_ITEM,
@@ -10,6 +12,7 @@ import {
     LOAD_ALL_REVIEWS,
     LOAD_RESTAURANT_MENU,
     LOAD_ALL_USERS,
+    CHANGE_LOCATION,
 } from '../constants/index';
 
 const setNewRating = value => ({
@@ -117,6 +120,17 @@ const loadAllUsers = () => async dispatch => {
     }
 };
 
+const changeURL = path => async (dispatch, getState) => {
+    try {
+        dispatch(push(path));
+    } catch (err) {
+        dispatch({
+            type: CHANGE_LOCATION + ERROR,
+            error: err,
+        });
+    }
+};
+
 export {
     setNewRating,
     addItem,
@@ -126,4 +140,5 @@ export {
     loadAllReviews,
     loadRestaurantMenu,
     loadAllUsers,
+    changeURL,
 };

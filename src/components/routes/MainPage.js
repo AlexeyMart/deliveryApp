@@ -6,7 +6,8 @@ import Cart from '../Cart';
 import { Button } from 'antd';
 import { NavLink } from 'react-router-dom';
 
-export default function MainPage() {
+export default function MainPage({ match }) {
+    console.log(match);
     return (
         <>
             <Filter></Filter>

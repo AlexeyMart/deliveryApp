@@ -13,7 +13,7 @@ export default function OrderPage({ match }) {
         }, 500);
     }, []);
 
-    console.log(`-----MATCH-----`, match);
+    console.log(match);
 
     const body = state ? (
         <>

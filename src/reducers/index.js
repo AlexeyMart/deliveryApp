@@ -5,6 +5,8 @@ import restaurants from './restaurants';
 import dishes from './dishes';
 import reviews from './reviews';
 import users from './users';
+import history from '../history';
+import { connectRouter } from 'connected-react-router';
 
 export default combineReducers({
     rating,
@@ -13,4 +15,5 @@ export default combineReducers({
     dishes,
     reviews,
     users,
+    router: connectRouter(history),
 });
