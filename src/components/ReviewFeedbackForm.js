@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button, Rate, Input, Card, Icon } from 'antd';
 import { addReview } from '../action-creators/index';
 import { connect } from 'react-redux';
+import { context } from '../contexts/language';
+import translate from '../locale/translate';
 
 function ReviewFeedbackForm({ restaurantID, addNewReview }) {
     const [feedbackText, setFeedbackText] = useState();
@@ -18,6 +20,8 @@ function ReviewFeedbackForm({ restaurantID, addNewReview }) {
 
     const handleChangeInputValue = event => setFeedbackText(event.target.value);
 
+    const language = useContext(context);
+
     return (
         <div className="review-feedbackform-container">
             <Card bordered style={{ width: '350px', margin: '0 auto', textAlign: 'center' }}>
@@ -26,7 +30,7 @@ function ReviewFeedbackForm({ restaurantID, addNewReview }) {
                         <Input
                             prefix={<Icon type="edit"></Icon>}
                             style={{ width: '300px' }}
-                            placeholder="your feedback"
+                            placeholder={translate(language, 'your-feedback')}
                             value={feedbackText}
                             onChange={handleChangeInputValue}
                         ></Input>
@@ -38,7 +42,7 @@ function ReviewFeedbackForm({ restaurantID, addNewReview }) {
 
                     <Form.Item style={{ margin: 0 }}>
                         <Button type="primary" htmlType="submit">
-                            Add a review
+                            {translate(language, 'add-review')}
                         </Button>
                     </Form.Item>
                 </Form>

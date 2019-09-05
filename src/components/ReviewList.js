@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Row, Col } from 'antd';
 import Review from './Review';
 import propTypes from 'prop-types';
@@ -6,6 +6,8 @@ import ReviewFeedbackForm from './ReviewFeedbackForm';
 import { connect } from 'react-redux';
 import { reviewListSelector, loadedUsers } from '../selectors';
 import { loadAllUsers } from '../action-creators/index';
+import { context } from '../contexts/language';
+import translate from '../locale/translate';
 
 function ReviewList({ reviews, restaurantID, loadAllUsers, loaded }) {
     useEffect(() => {
@@ -15,6 +17,8 @@ function ReviewList({ reviews, restaurantID, loadAllUsers, loaded }) {
     }, []);
 
     const [state, setState] = useState();
+
+    const language = useContext(context);
 
     console.log('review = ', reviews);
 
@@ -38,7 +42,9 @@ function ReviewList({ reviews, restaurantID, loadAllUsers, loaded }) {
                 type={state ? 'danger' : 'primary'}
                 onClick={() => setState(prevState => !prevState)}
             >
-                {state ? 'Close reviews' : 'Open reviews'}
+                {state
+                    ? translate(language, 'close-reviews-btn')
+                    : translate(language, 'open-reviews-btn')}
             </Button>
             {body}
         </div>

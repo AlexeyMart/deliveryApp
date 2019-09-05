@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Button, Icon, Input } from 'antd';
 import useInputValue from '../custom-hooks/useInputValue';
 import { connect } from 'react-redux';
 import { orderFormSelector } from '../selectors/index';
 import propTypes from 'prop-types';
+import { context } from '../contexts/language';
+import translate from '../locale/translate';
 
 function OrderForm({ orderData }) {
     const [name, setName] = useInputValue();
@@ -17,12 +19,14 @@ function OrderForm({ orderData }) {
         alert('look at orderData in console!');
     };
 
+    const language = useContext(context);
+
     return (
         <div className="order-form-container">
             <Form onSubmit={handleSubmit}>
                 <Form.Item style={{ margin: 0 }}>
                     <Input
-                        placeholder="Name"
+                        placeholder={translate(language, 'name')}
                         prefix={<Icon type="user"></Icon>}
                         value={name}
                         onChange={setName}
@@ -32,7 +36,7 @@ function OrderForm({ orderData }) {
 
                 <Form.Item style={{ margin: 0 }}>
                     <Input
-                        placeholder="Telephone"
+                        placeholder={translate(language, 'telephone')}
                         prefix={<Icon type="phone"></Icon>}
                         value={telephone}
                         onChange={setTelephone}
@@ -42,7 +46,7 @@ function OrderForm({ orderData }) {
 
                 <Form.Item style={{ margin: 0 }}>
                     <Input
-                        placeholder="Adress"
+                        placeholder={translate(language, 'adress')}
                         prefix={<Icon type="home"></Icon>}
                         value={adress}
                         onChange={setAdress}
@@ -52,7 +56,7 @@ function OrderForm({ orderData }) {
 
                 <Form.Item style={{ margin: 0 }}>
                     <Button type="danger" htmlType="submit">
-                        Order
+                        {translate(language, 'order')}
                     </Button>
                 </Form.Item>
             </Form>

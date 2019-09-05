@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Col, Row } from 'antd';
 import Dish from './Dish';
 import propTypes from 'prop-types';
@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { loadRestaurantMenu } from '../action-creators/index';
 import { loadingRestaurantMenu, loadedRestaurantMenu } from '../selectors/index';
 import Loader from './Loader';
+import { context } from '../contexts/language';
+import translate from '../locale/translate';
 
 function RestaurantMenu({ menu, restaurantID, loadRestaurantMenu, loading, loaded }) {
     const [state, setState] = useState(false);
@@ -16,6 +18,8 @@ function RestaurantMenu({ menu, restaurantID, loadRestaurantMenu, loading, loade
         }
         setState(prevState => !prevState);
     }, []);
+
+    const language = useContext(context);
 
     // console.log(`-----loading = `, loading);
 
@@ -46,7 +50,9 @@ function RestaurantMenu({ menu, restaurantID, loadRestaurantMenu, loading, loade
                 type={state ? 'danger' : 'primary'}
                 onClick={() => setState(prevState => !prevState)}
             >
-                {state ? 'Close menu' : 'Open menu'}
+                {state
+                    ? translate(language, 'close-menu-btn')
+                    : translate(language, 'open-menu-btn')}
             </Button>
             {body}
         </div>

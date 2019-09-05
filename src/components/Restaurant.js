@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Avatar, Rate } from 'antd';
 import ReviewList from './ReviewList';
 import RestaurantMenu from './RestaurantMenu';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { restaurantSelector, restaurantRatingSelector } from '../selectors/index';
+import { context } from '../contexts/language';
+import translate from '../locale/translate';
 
 function Restaurant({ restaurant, id, rating }) {
     // console.log('restaurant = ', restaurant);
     // console.log(`id = `, id);
     const [isOpen, setOpen] = useState();
+
+    const language = useContext(context);
 
     const body = isOpen && (
         <>
@@ -36,7 +40,7 @@ function Restaurant({ restaurant, id, rating }) {
                     type={isOpen ? 'danger' : 'primary'}
                     onClick={() => setOpen(prevState => !prevState)}
                 >
-                    {isOpen ? 'Close' : 'Open'}
+                    {isOpen ? translate(language, 'close-btn') : translate(language, 'open-btn')}
                 </Button>
             </div>
 

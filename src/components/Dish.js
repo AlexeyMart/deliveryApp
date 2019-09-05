@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card, Button } from 'antd';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addItem, removeItem } from '../action-creators/index';
 import { dishSelector, amountDishSelector, restaurantTitleSelector } from '../selectors/index';
+import { context } from '../contexts/language';
+import translate from '../locale/translate';
 
 function Dish({
     amount,
@@ -20,6 +22,8 @@ function Dish({
         removeItemFromCart(id, amount, price, name, restaurant);
     };
 
+    const language = useContext(context);
+
     return (
         <div className="dish-container">
             <>
@@ -28,11 +32,17 @@ function Dish({
                     cover={<img src={image} height={170} alt=""></img>}
                     actions={[
                         <>
-                            <p>Price: {price} $</p>
-                            <p>Amount: {amount}</p>
+                            <p>
+                                {translate(language, 'price')}: {price} $
+                            </p>
+                            <p>
+                                {translate(language, 'amount')}: {amount}
+                            </p>
                         </>,
                         <>
-                            <p>Total: {price * amount} $</p>
+                            <p>
+                                {translate(language, 'total')}: {price * amount} $
+                            </p>
                             <Button.Group>
                                 <Button
                                     type="primary"
